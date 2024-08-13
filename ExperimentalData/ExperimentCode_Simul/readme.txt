@@ -1,0 +1,3 @@
+---load "qr_62s.mat"
+---Add the "Packages" folder and its files in the workspace path
+---Config "eni8.xml" in simulink
