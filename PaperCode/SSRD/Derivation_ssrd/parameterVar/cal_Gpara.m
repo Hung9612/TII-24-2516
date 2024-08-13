@@ -1,7 +1,7 @@
 function [mi,ri] = cal_Gpara(n,opt)
 %fetchGpara 
 % For this D matrix, it will compute the result with respect to the pseudo 
-% inertia matix, its computation is based on the formula in the book
+% inertia matix
 %   
 %
 %
