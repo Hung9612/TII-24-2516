@@ -1,15 +1,9 @@
 function Tmat= cal_Tmat_best(theta)
-%CAL_TMAT_BEST 此处显示有关此函数的摘要
-%   在使用该函数之前，需要在ConfigTrans.m 中设置：
-%   1）求解齐次变换矩阵的类型：numerical 或者symbolic。
-%   2）设置好localPOE的初始位置以及局部位姿变换矩阵。
-%  --Return
-%       -vect每个初始变换矩阵T的列向量化（这里是行的列向量化，文章是列的列向量化）
-%       -vece每个局部位姿矩阵E的编码矩阵，行为基,列为单个entry
+
 [Tc,Ev] = ConfigTrans(theta);
 [vect,vece] = prep(Tc,Ev);
 
-% 初始化
+%
 [~,Tmat1]=MatMultiply_num({Tc{1}},{Ev{1}},2);
 Tmat2 = initialize_T12(Tc,vect,vece);
 n=length(theta);
@@ -18,7 +12,6 @@ if 2<n
     Inx_deavec = Tmat2.Inxavec;
     Inx_W = Tmat2.InxWmat;
     for t=3:n
-        % 更新tildeVi
         for i=1:4
             temp=[];
             for j=1:length(Inx_deavec{i})
@@ -28,7 +21,6 @@ if 2<n
         end
 
 
-         % 计算avec2In
         for i=1:4
            temp1 = tildeVi{i};
            temp0 = temp1+3*(temp1-1);
@@ -40,7 +32,6 @@ if 2<n
            InxV_i={};
         end
 
-        % 更新tildeWi
         for i=1:4
             tildeWij = [];
             for j = 1:length(Inx_W{i})
@@ -49,7 +40,6 @@ if 2<n
             tildeWi{i} = tildeWij;
         end
 
-        % 匹配tildeWi InxV
         u=1;
         col_W=[];
         row_V=[];
@@ -66,7 +56,7 @@ if 2<n
                 Inx_Wmat1 = [];
                 if isempty(match_Inxij)~=1
                    for k = 1:length(match_Inxij) 
-                       matInx_avec = (match_Inxij(k)+4-j)/4;%解码到总的avec
+                       matInx_avec = (match_Inxij(k)+4-j)/4;
                        [mval_vec,mval_vec2vec] = decode_val(matInx_avec,match_Inxij(k),vect,vece,i,t);
                        newVij = [newVij,mval_vec];
                        newWij = [newWij,mval_vec2vec];
@@ -77,8 +67,6 @@ if 2<n
                     newVij = 0;
                     newWij = sym(0);
                 end
-        %         newVi{u} = newVij;% V矩阵中第i行
-        %         newWi{u} = newWij;
                u=u+1;
                row_V=blkdiag(row_V,newVij);
                col_W=vertcat(col_W,newWij.');

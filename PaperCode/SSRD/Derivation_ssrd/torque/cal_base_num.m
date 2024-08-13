@@ -87,7 +87,7 @@ elseif opt==7
        Up(:,421:490)];
 
     [Lz,Uz]=FRdecomposition_SVD_thin(Z,opt);
-    Theta=vpa(Uz*X.',9);%最小惯性参数集
+    Theta=vpa(Uz*X.',9);%
     nulltheta=X(sum(abs(round(Uz,tol)),1)==0);
     sprintf('The number of base parameter is %d',length(Theta))
 

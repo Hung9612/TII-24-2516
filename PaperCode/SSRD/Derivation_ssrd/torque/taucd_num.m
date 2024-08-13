@@ -69,7 +69,6 @@ for i=1:length(idx)
 %     kkw=ksw(ro);
 %     inspection(ksw(ro),rrewinx);
     for j=1:num
-        % 先取出相邻两行，即同一个关节角下的sinq, cosq
         er1=[2;0]-rrewinx(2*j-1:2*j,:);
         zinx1=find(sum(abs(er1),1)==0);
         % 

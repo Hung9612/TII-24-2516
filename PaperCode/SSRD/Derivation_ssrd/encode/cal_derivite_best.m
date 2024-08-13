@@ -1,12 +1,8 @@
 function tw = cal_derivite_best(tw,qi,pn)
-%CAL_DERIVATE 在编码中求导
-%   -tw:变换矩阵的W的编码矩阵[sin(q);cos(q);q]
-%   -pn:移动关节的编号
-%   -qi:要求导的关节编号
-%   -deg:the function degree, namely the power of the function sin and cos
+
 assert(isempty(tw)~=1,'The tw is empty!')
 n=(size(tw,1)-1)/3;
-if pn==0 % 只有revolute
+if pn==0 %revolute
     sinx=find(tw(2*qi,:));
     cosx=find(tw(2*qi+1,:));
 

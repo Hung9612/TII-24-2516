@@ -6,7 +6,7 @@ tjk_i=calderivite([ones(1,size(Dmat{cal_inx(j,k,n)}.W,2));Dmat{cal_inx(j,k,n)}.W
 
 cijk_w=[tjk_i(2:end,:),tik_j(2:end,:),tij_k(2:end,:)];
 
-cjk=-1/2*double(tjk_i(1,:).').*(Dmat{cal_inx(j,k,n)}.V);%行为个数
+cjk=-1/2*double(tjk_i(1,:).').*(Dmat{cal_inx(j,k,n)}.V);%
 cik=1/2*double(tik_j(1,:).').*(Dmat{cal_inx(i,k,n)}.V);
 cij=1/2*double(tij_k(1,:).').*(Dmat{cal_inx(i,j,n)}.V);
 cijk_v=[cjk;cik;cij];

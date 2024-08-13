@@ -111,7 +111,7 @@ function inspect_sim(su,nonz,ksw,ro,rrewinx,base,n)
     end
     er=su-sum(ksw(ro));
     er1=simplify(er);
-    sprintf('检验化简后和未编码：%s',er1)
+    sprintf('checkerror：%s',er1)
 
 end
 

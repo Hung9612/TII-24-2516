@@ -1,9 +1,8 @@
 function Tmat2 = initialize_T12(Tc,vect,vece)
-%UNTITLED10 此处显示有关此函数的摘要
-%   此处显示详细说明
 
 
-[aIndex.m,aIndex.n] = find(Tc{1});%取出a矩阵的非零元的以行序的行号，列号
+
+[aIndex.m,aIndex.n] = find(Tc{1});%
 [V_inx_reduce,~] = cal_index_A2vec2I(vect{2}.inx,aIndex,0);
 W_inx_reduce = cal_index_vec2vec(vece{1}.inx,vece{2}.inx);
 T.inx_reducV = V_inx_reduce;
@@ -23,7 +22,7 @@ for i=1:4
     Inx_Wmat=[];
 
     for j=1:4
-        row2temp3=cell2mat(temp3(j));%取出V原始的列号（即未简化的）的第j行
+        row2temp3=cell2mat(temp3(j));%
         Inx_deco1=[];
         Inx_Wmat1=[];
         newVij=[];
@@ -31,14 +30,14 @@ for i=1:4
         match_inxij = intersect(row2temp3,T.inx_reducW);
         if isempty(match_inxij)~=1
             for k=1:length(match_inxij)
-                % 解码V
-                matInx_avec = (match_inxij(k)+4-j)/4;%解码到总的avec
+                %
+                matInx_avec = (match_inxij(k)+4-j)/4;%
                 matInx_avec_x = ceil((matInx_avec-0.5)/16); % (matInx_avec_x-1)*16+vec_decode=match_Inxij;
                 vec_decode = matInx_avec - (matInx_avec_x-1)*16;
                 mval_vec = vect{2}.val(vect{2}.inx == vec_decode)...
                     *vect{1}.val(vect{1}.inx==(matInx_avec_x+(i-1)*4));
                 
-                % 解码W
+                %
                 matInx_vec2vec = ceil((match_inxij(k)-0.5)/16);
                 vec2_decode = match_inxij(k) - (matInx_vec2vec-1)*16;
                 mval_vec2vec = vece{2}.val(vece{2}.inx == vec2_decode)...

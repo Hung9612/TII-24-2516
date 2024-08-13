@@ -27,10 +27,10 @@ for i=1:n
 %     Jk=fetch_para(i,opt);
     Tk=T_mat{i};
     if isa(Tk.V_fast(T_trans_inT_inx(1),1),'sym')
-        V1=kron(Tk.V_fast(T_trans_inT_inx(1),:),Tk.V_fast(1,:))*0;%初始化V
+        V1=kron(Tk.V_fast(T_trans_inT_inx(1),:),Tk.V_fast(1,:))*0;
     else
         V1=kron(zeros(size(Tk.V_fast(T_trans_inT_inx(1),:))),...
-                    zeros(size(Tk.V_fast(1,:))));%初始化V
+                    zeros(size(Tk.V_fast(1,:))));
     end
     len_b=length(Tk.V_fast(1,:));
     
@@ -60,7 +60,7 @@ for i=1:n
     
   
     temp=zeros(10*n,size(ataV1,2));
-%     参数的顺序：parameters=[m,rr,ivector];
+%     parameters=[m,rr,ivector];
 %     Inxes=[i,i+n:i+n+2,i+4*n:i+4*n+5];
 if n==2
     temp(i,:)=ataV16;
@@ -93,7 +93,7 @@ end
 function inx = cal_vec2vec(nub,nud,len_d)
 %UNTITLED2 
 %   nub=NonZeroIndex(vecb),nud=NonZeroIndex(vecd)
-%   计算 kron(vec(b),vec(d))的索引变换
+%   
     inx=[];
     numb=length(nub);
     for i=1:numb
@@ -104,7 +104,7 @@ end
 
 function V=kron_sparse(inx,datavec,inx_b,inx_d,V,len_d)
 
-    % 计算向量和向量之间kron运算后的非零元的real地址，以及稀疏值进行kron
+    % 
     vec1_inx=cal_vec2vec(inx{inx_b(1)},inx{inx_d(1)},len_d);
     vec_data1=kron(datavec{inx_b(1)},datavec{inx_d(1)});
     
@@ -117,8 +117,7 @@ function V=kron_sparse(inx,datavec,inx_b,inx_d,V,len_d)
     vec4_inx=cal_vec2vec(inx{inx_b(4)},inx{inx_d(4)},len_d);
     vec_data4=kron(datavec{inx_b(4)},datavec{inx_d(4)});
     
-    % V=kron(b1,d1)+kron(b2,d2)+...
-    % 计算kron(b1,d1)+kron(b2,d2)对V的影响，而V事先知道其大小维度
+    
     inter12=intersect(vec1_inx,vec2_inx);
     diffset1=setdiff(vec1_inx,inter12);
     diffset2=setdiff(vec2_inx,inter12);
@@ -127,7 +126,7 @@ function V=kron_sparse(inx,datavec,inx_b,inx_d,V,len_d)
     if isempty(inter12)~=1
         V(:,inter12)=vec_data1(vec1_inx==inter12)+vec_data2(vec2_inx==inter12);
     end
-    % 在kron(b1,d1)+kron(b2,d2)基础上计算kron(b3,d3)对V的影响，而V事先知道其大小维度
+    % 
     set12=unique([vec1_inx,vec2_inx]);
     inter123=intersect(set12,vec3_inx);
     diffset3=setdiff(vec3_inx,inter123);
@@ -135,7 +134,7 @@ function V=kron_sparse(inx,datavec,inx_b,inx_d,V,len_d)
     if isempty(inter123)~=1
         V(:,inter123)=V(:,inter123)+vec_data3(vec3_inx==inter123);
     end
-    % 在kron(b1,d1)+kron(b2,d2)+kron(b3,d3)基础上计算kron(b4,d4)对V的影响，而V事先知道其大小维度
+    % 
     set123=unique([set12,vec3_inx]);
     inter1234=intersect(set123,vec4_inx);
     diffset4=setdiff(vec4_inx,inter1234);

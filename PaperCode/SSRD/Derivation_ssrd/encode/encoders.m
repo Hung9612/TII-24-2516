@@ -17,10 +17,10 @@ if pn==0
         end
     end
 elseif pn~=0
-    % baseinx=1:3*n;% 把pn旋转相关的函数和平移的函数取出来
+    % baseinx=1:3*n;
     omitinx=[2*pn-1:2*pn,setdiff(2*n+1:3*n,2*n+pn)];
 
-    % base=base(setdiff(baseinx,omitinx));% 默认有平移就没有旋转
+    % base=base(setdiff(baseinx,omitinx));
     base(omitinx)=0;
     mfunc=length(base);
     for i=1:m

@@ -1,6 +1,5 @@
 function [vect,vece] = prep(Tc,Ev)
-%UNTITLED8 此处显示有关此函数的摘要
-%   此处显示详细说明
+
 n=length(Tc);
 
 for i=1:n

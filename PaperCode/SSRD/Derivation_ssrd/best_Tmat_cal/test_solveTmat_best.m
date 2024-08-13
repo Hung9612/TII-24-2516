@@ -10,12 +10,12 @@ theta=[q1 q2 q3 q4 q5 q6 q7 q8];
 [vect,vece] = ConfigNonzeroEle(Tc,Ev);
 [~,T02] = InitWV2({Tc{1},Tc{2}},{Ev{1},Ev{2}},2);
 
-tic
+
 %%
 Inx_deavec = T02.Inxavec;
 Inx_W = T02.InxWmat;
 for t=3:length(Tc)
-    % 更新tildeVi
+    %
     for i=1:4
         temp=[];
         for j=1:length(Inx_deavec{i})
@@ -25,7 +25,7 @@ for t=3:length(Tc)
     end
 
 
-     % 计算avec2In
+     %
     for i=1:4
        temp1 = tildeVi{i};
        temp0 = temp1+3*(temp1-1);
@@ -37,7 +37,7 @@ for t=3:length(Tc)
        InxV_i={};
     end
 
-    % 更新tildeWi
+    %
     for i=1:4
         tildeWij = [];
         for j = 1:length(Inx_W{i})
@@ -46,7 +46,7 @@ for t=3:length(Tc)
         tildeWi{i} = tildeWij;
     end
 
-    % 匹配tildeWi InxV
+    %
     u=1;
     col_W=[];
     row_V=[];
@@ -63,7 +63,7 @@ for t=3:length(Tc)
             Inx_Wmat1 = [];
             if isempty(match_Inxij)~=1
                for k = 1:length(match_Inxij) 
-                   matInx_avec = (match_Inxij(k)+4-j)/4;%解码到总的avec
+                   matInx_avec = (match_Inxij(k)+4-j)/4;
                    [mval_vec,mval_vec2vec] = decode_val(matInx_avec,match_Inxij(k),vect,vece,i,t);
                    newVij = [newVij,mval_vec];
                    newWij = [newWij,mval_vec2vec];
@@ -74,7 +74,7 @@ for t=3:length(Tc)
                 newVij = sym(0);
                 newWij = sym(0);
             end
-    %         newVi{u} = newVij;% V矩阵中第i行
+    %         newVi{u} = newVij;
     %         newWi{u} = newWij;
            u=u+1;
            row_V=blkdiag(row_V,newVij);
@@ -98,8 +98,8 @@ for t=3:length(Tc)
     Tmat{t}.V_fast = row_V_uni(:,2:end);
     Tmat{t}.W = uni_colW(2:end,:);
 end
-toc
 
-%%
+
+
 
 

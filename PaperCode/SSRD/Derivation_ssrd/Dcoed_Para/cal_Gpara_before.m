@@ -1,11 +1,10 @@
 function [mi,ri] = cal_Gpara_before(n,opt)
 %fetchGpara 
 % For this D matrix, it will compute the result with respect to the pseudo 
-% inertia matix, its computation is based on the formula in the book
-% "机器人动力学与控制-霍伟.pdf"   
+% inertia matix   
 %
 %
-% 中文：None
+% 
 %
 % Input:
 %  n:the number of joints
@@ -20,7 +19,7 @@ function [mi,ri] = cal_Gpara_before(n,opt)
 %   
 %
 %
-%  取每个关节的物理参数
+%
 if opt==2
     syms m1;syms m2;syms m3;
     syms m1rx1;syms m1ry1;syms m1rz1;
@@ -53,7 +52,7 @@ else
       m6rx6,  m6ry6,  m6rz6;
       m7rx7,  m7ry7,  m7rz7;];
 
-    % 返回参数
+    %
     mi=m(n);
     ri=r(n,:).';
     ri=[ri;mi];

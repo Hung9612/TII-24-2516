@@ -1,34 +1,4 @@
 function [inx,cur_inx] = cal_index_A2vec2I(nu,aIndex,p)
-%cal_index_A2vec2I 
-% Kronecker product for a matrix, vec vector, and In (not in) identity matrix
-% However, the dimention of their result increases soaringly.
-% So, we only take the nonzeros elments of them to undertake kronecker.
-% Here is calculate their sparse index after kronecker product such that we
-% don't care their values, which accelerate the speed.
-%
-% 
-%
-% Input:
-% 	nu: vec's sparse index which has been computed in function
-% 	“cal_index_vec2vec.m”. 
-%   aIndex: the sparse index of a mtrix.
-%   p: the exponent of gain. here is the exponent of 16,since T matrix of
-%   robot is 4 by 4.
-%
-% Output:
-% inx: real index result after the three kronecker product
-% cur_inx: relative index change (relative to the number of sparse vector
-% or matrix exactly have) .
-% 
-% Example:
-% 	  nu=[1,3,6,7];%nonzero element index of vec vector
-%     aIndex.i=[1,1,3,4];%sparse matrix can use fucntion "find"
-%    aIndex.j=[2,3,4,5];%
-%       p=0;% its size is relavant to the number of C matrix, and B matrix
-%   % rerurn
-%   inx: cell array.
-%   cur_inx:cell array.
-%
 
 cur_nu=1:length(nu);
 row_index={};

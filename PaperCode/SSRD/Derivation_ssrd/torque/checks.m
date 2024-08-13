@@ -22,7 +22,7 @@ dijt1=subs(t1,num2cell([x,q]),num2cell([numX,qnum(r,:)]));
 err=(eval(dijbest)-eval(dijt1))+err;
 end
 if 1e-9<err
-sprintf('------cijk误差为.f%d',err)
+sprintf('------cijk error.f%d',err)
 end
 % simplify(sumw*theta-t1)
 end

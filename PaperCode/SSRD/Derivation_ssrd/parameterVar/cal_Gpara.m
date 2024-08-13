@@ -2,10 +2,10 @@ function [mi,ri] = cal_Gpara(n,opt)
 %fetchGpara 
 % For this D matrix, it will compute the result with respect to the pseudo 
 % inertia matix, its computation is based on the formula in the book
-% "机器人动力学与控制-霍伟.pdf"   
+%   
 %
 %
-% 中文：None
+% 
 %
 % Input:
 %  n:the number of joints
@@ -49,7 +49,7 @@ else
       m6rx6,  m6ry6,  m6rz6;
       m7rx7,  m7ry7,  m7rz7;];
 
-    % 返回参数
+    %
     mi=m(n);
     ri=r(n,:).';
     ri=[ri;1];

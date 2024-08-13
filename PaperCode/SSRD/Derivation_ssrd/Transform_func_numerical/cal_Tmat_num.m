@@ -13,14 +13,7 @@ if n==6
     e4=[yrot(q4),zeros(1,3)';0,0,0,1];
     e5=[zrot(q5),zeros(1,3)';0,0,0,1];
     e6=[yrot(q6),zeros(1,3)';0,0,0,1];
-    % Jmat=subs(Jmat,{z1,z2,z3,z4,z5,z6},{0.025,0.183,0.315,0.035,0.365,0.08});
 
-%     T6=transl([0,0,z6]);
-%     T5=transl([0,0,z5]);
-%     T4=transl([0,0,z4]);
-%     T3=transl([0,0,z3]);
-%     T2=transl([z1,0,z2]);
-%     T1=transl([0,0,0]);
     T6=transl([0,0,0.08]);
     T5=transl([0,0,0.365]);
     T4=transl([0,0,0.035]);
